@@ -22,6 +22,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { green } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
+import auth from './LogIn';
 
 function Copyright() {
   return (
@@ -163,8 +164,14 @@ export default function SignInSide(props) {
               fullWidth
               variant="contained"
               color="primary"
-              className={[classes.submit].join(' ')}
-              onClick={props.onLogin} 
+              className={classes.submit}
+              onClick={
+                () => {
+                  auth.login(() => {
+                    props.history.push("/todoapp");
+                  });
+                }
+              }
             >
               Sign In
             </Button>
